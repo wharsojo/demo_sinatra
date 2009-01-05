@@ -1,0 +1,47 @@
+>>_h2
+%h2{style="margin: 4px 0 2px;"} $0
+
+>>_form_new
+-form$$ $0
+ %table{border=1}
+
+>>_form_edit
+-form$$ $0
+ %input{type="hidden" name="_method" value="put"}/
+ %table{border=1}
+
+>>_form
+&tbl= *#
+<form *all*method="post" action="<%= $0 %>">
+<</
+</form>
+
+>>_input
+%tr
+ %td
+  %label{for="&tbl!_$0"} ~:capitalize$0:
+ %td
+  %input{type="text" id="&tbl!_$0" name="$0" value="<%= @&tbl!.$0 %>"}/
+  
+>>_text
+%tr
+ %td
+  %label{for="&tbl!_$0"} ~:capitalize$0:
+ %td
+  %textarea{id="&tbl!_$0" name="$0" cols=~40~$1 rows=~2~$2}= @&tbl!.$0
+
+>>_select
+%tr
+ %td
+  %label{for="&tbl!_$0"} ~:capitalize$0:
+ %td
+  %select{id="&tbl!_$0" name="$0"}
+
+>>_option        
+%option{value="~:to_s[0,1]$0"*att*} $0
+
+>>_submit
+%tr
+ %td &nbsp;
+ %td
+  <input type="submit" value="$0"/>

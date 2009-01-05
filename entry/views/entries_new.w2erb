@@ -1,0 +1,12 @@
+!hot!sinatra_form2
+-h2 Write a new entry
+-a2 List;"/entries"
+-form_new#entry "/entries/new"
+  -input title
+  -input slug
+  -text  description;80;5
+  -text  contents;80;14
+  -select state
+     -option Draft
+     -option Published
+  -submit Create a new entry.

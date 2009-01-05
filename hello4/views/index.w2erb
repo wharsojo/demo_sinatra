@@ -1,0 +1,4 @@
+%h1 Entry List
+-each @recs.each;r
+    = r.title
+    %br/

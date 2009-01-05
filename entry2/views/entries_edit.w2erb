@@ -1,0 +1,12 @@
+!hot!sinatra_form2
+-h2 Edit an Entry
+-a2 List;"/entries"
+-form_edit#entry "/entries/#{@entry.id}"
+  -input title
+  -input slug
+  -text  description;80;5
+  -text  contents;80;14
+  -select state
+     -option{<%= @entry.state=="D" ? " selected" : "" %>} Draft
+     -option{<%= @entry.state=="P" ? " selected" : "" %>} Published
+  -submit Update an entry.

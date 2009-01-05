@@ -1,0 +1,55 @@
+<h2 style="margin: 4px 0 2px;">Write a new entry</h2>
+<a href="<%= "/entries" %>">List</a>
+<form id="entry" method="post" action="<%= "/entries/new" %>">
+ <table border=1>
+  <tr>
+   <td>
+    <label for="entry_title">Title:</label>
+   </td> 
+   <td>
+    <input type="text" id="entry_title" name="title" value="<%= @entry.title %>"/>
+   </td> 
+  </tr> 
+  <tr>
+   <td>
+    <label for="entry_slug">Slug:</label>
+   </td> 
+   <td>
+    <input type="text" id="entry_slug" name="slug" value="<%= @entry.slug %>"/>
+   </td> 
+  </tr> 
+  <tr>
+   <td>
+    <label for="entry_description">Description:</label>
+   </td> 
+   <td>
+    <textarea id="entry_description" name="description" cols=80 rows=5><%= @entry.description %></textarea>
+   </td> 
+  </tr> 
+  <tr>
+   <td>
+    <label for="entry_contents">Contents:</label>
+   </td> 
+   <td>
+    <textarea id="entry_contents" name="contents" cols=80 rows=14><%= @entry.contents %></textarea>
+   </td> 
+  </tr> 
+  <tr>
+   <td>
+    <label for="entry_state">State:</label>
+   </td> 
+   <td>
+    <select id="entry_state" name="state">
+     <option value="D">Draft</option>
+     <option value="P">Published</option>
+    </select> 
+   </td> 
+  </tr> 
+  <tr>
+   <td>&nbsp;</td>
+   <td>
+    <input type="submit" value="Create a new entry."/>
+   </td> 
+  </tr> 
+ </table> 
+</form>

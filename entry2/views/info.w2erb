@@ -1,0 +1,63 @@
+%br/
+#info.demo
+  %ul
+    %li
+      -a Sinatra.application.events
+      %ul
+        -each Sinatra.application.events;k,v
+         %li
+          -a= k 
+          %ul
+            -each v;x
+              %li
+                -a= x.class<
+                 = x.path if x.class == Sinatra::Event 
+    %li
+      -a Sinatra.application.options
+      %ul
+        - rtn = Sinatra.application.options
+        -eachs rtn.public_methods(nil).select{|y|/\w=$/=~y};z
+          %li= z + rtn.send(z.gsub('=','')).to_s
+    %li
+      -a self.request.env
+      %ul
+        -eachs self.request.env;k,v
+          %li= "#{k} => #{v}"
+    %li
+      -a self.request.public_methods(nil)
+      %ul
+        -eachs self.request.public_methods(nil);z
+          %li= z
+    %li
+      -a self.response.public_methods(nil)
+      %ul
+        -eachs self.response.public_methods(nil);z
+          %li= z
+    %li
+      -a (self.methods - Object.methods)
+      %ul
+       -eachs (self.methods - Object.methods);x
+        %li
+          -a= x
+          -if "header params route_params session status".scan(x)[0]
+            %ul
+              - rtn = send(x)
+              -if rtn.class == Hash
+                -each rtn;k,v
+                  %li= k + " = " + v.to_s
+              -else
+                %li= rtn
+    %li
+      -a Sinatra.application.public_methods(nil)
+      %ul
+       -eachs Sinatra.application.public_methods(nil);x
+        %li
+          -a= x
+          -if "development? options".scan(x)[0]
+            %ul
+              - rtn = Sinatra.application.send(x)
+              -if rtn.class == OpenStruct
+                -eachs rtn.public_methods(nil).select{|y|/\w=$/=~y};z
+                  %li= z + rtn.send(z.gsub('=','')).to_s
+              -else
+                %li= rtn.class
