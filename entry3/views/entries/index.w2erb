@@ -1,0 +1,4 @@
+!hot!sinatra_table
+- @title = "Entry List"
+-h2= @title
+-list_r#entries title;slug;description

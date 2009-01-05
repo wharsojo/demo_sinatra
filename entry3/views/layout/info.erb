@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title><%= @title ? @title : "Info" %></title>
+    <script type="text/javascript" src="/js/jquery.js" > </script>
+    <script type="text/javascript" src="/js/jquery.listen.js" > </script>
+    <script type="text/javascript" src="/js/tree_component.js" > </script>
+    <link rel="stylesheet" href="/css/tree_component.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen, projection" />
+     <script>
+     $(function() {
+      tree1 = new tree_component();
+      tree1.init($("#info"));
+     });
+     </script>
+  </head> 
+  <body>
+    <div id="container">
+      <%= yield %>
+    </div> 
+  </body> 
+</html> 

@@ -1,0 +1,101 @@
+<br/>
+<div id="info" class="demo">
+  <ul>
+    <li>
+      <a href="#">Sinatra.application.events</a>
+      <ul>
+        <% Sinatra.application.events.each do |k,v| %>
+         <li>
+          <a href="#"><%= k %></a>
+          <ul>
+            <% v.each do |x| %>
+              <li>
+                <a href="#"><%= x.class %>
+                 <%= x.path if x.class == Sinatra::Event %>
+                </a> 
+              </li> 
+            <% end %>
+          </ul> 
+         </li> 
+        <% end %>
+      </ul> 
+    </li> 
+    <li>
+      <a href="#">Sinatra.application.options</a>
+      <ul>
+        <% rtn = Sinatra.application.options %>
+        <% rtn.public_methods(nil).select{|y|/\w=$/=~y}.sort.each do |z| %>
+          <li><%= z + rtn.send(z.gsub('=','')).to_s %></li>
+        <% end %>
+      </ul> 
+    </li> 
+    <li>
+      <a href="#">self.request.env</a>
+      <ul>
+        <% self.request.env.sort.each do |k,v| %>
+          <li><%= "#{k} => #{v}" %></li>
+        <% end %>
+      </ul> 
+    </li> 
+    <li>
+      <a href="#">self.request.public_methods(nil)</a>
+      <ul>
+        <% self.request.public_methods(nil).sort.each do |z| %>
+          <li><%= z %></li>
+        <% end %>
+      </ul> 
+    </li> 
+    <li>
+      <a href="#">self.response.public_methods(nil)</a>
+      <ul>
+        <% self.response.public_methods(nil).sort.each do |z| %>
+          <li><%= z %></li>
+        <% end %>
+      </ul> 
+    </li> 
+    <li>
+      <a href="#">(self.methods - Object.methods)</a>
+      <ul>
+       <% (self.methods - Object.methods).sort.each do |x| %>
+        <li>
+          <a href="#"><%= x %></a>
+          <% if "header params route_params session status".scan(x)[0] %>
+            <ul>
+              <% rtn = send(x) %>
+              <% if rtn.class == Hash %>
+                <% rtn.each do |k,v| %>
+                  <li><%= k + " = " + v.to_s %></li>
+                <% end %>
+              <% else %>
+                <li><%= rtn %></li>
+              <% end %>
+            </ul> 
+          <% end %>
+        </li> 
+       <% end %>
+      </ul> 
+    </li> 
+    <li>
+      <a href="#">Sinatra.application.public_methods(nil)</a>
+      <ul>
+       <% Sinatra.application.public_methods(nil).sort.each do |x| %>
+        <li>
+          <a href="#"><%= x %></a>
+          <% if "development? options".scan(x)[0] %>
+            <ul>
+              <% rtn = Sinatra.application.send(x) %>
+              <% if rtn.class == OpenStruct %>
+                <% rtn.public_methods(nil).select{|y|/\w=$/=~y}.sort.each do |z| %>
+                  <li><%= z + rtn.send(z.gsub('=','')).to_s %></li>
+                <% end %>
+              <% else %>
+                <li><%= rtn.class %></li>
+              <% end %>
+            </ul> 
+          <% end %>
+        </li> 
+       <% end %>
+      </ul> 
+    </li> 
+  </ul> 
+</div> 

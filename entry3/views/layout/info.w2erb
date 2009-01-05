@@ -1,0 +1,15 @@
+!hot!htm
+%html
+  %head
+    %title= @title ? @title : "Info"
+    -js  jquery
+    -js  jquery.listen
+    -js  tree_component
+    -css tree_component
+    -css style
+    -jsready
+      tree1 = new tree_component();
+      tree1.init($("#info"));
+  %body
+    #container
+      = yield

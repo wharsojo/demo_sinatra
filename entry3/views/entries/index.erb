@@ -1,0 +1,30 @@
+<% @title = "Entry List" %>
+<h2 style="margin: 4px 0 2px;"><%= @title %></h2>
+<a href="<%= "/" %>">Home</a>
+<a href="<%= "/entries/new" %>">New</a>
+<table id="entries" border=1>
+ <tr>
+  <th>No</th>
+  <th>Title</th>
+  <th>Slug</th>
+  <th>Description</th>
+  <th>Action</th>
+ </tr> 
+ <% @entries.each_with_index do |r,i| %>
+  <tr>
+   <td><%= i+1 %></td>
+   <td><%= r.title %></td>
+   <td><%= r.slug %></td>
+   <td><%= r.description %></td>
+   <td>
+    <form id="entry" method="post" action="<%= "/entries/#{r.id}" %>" style="margin:0px;">
+     <input type="hidden" name="_method" value="delete"/>
+     <a href="<%= "/entries/"+r.id.to_s %>">Edit</a>
+     <input type="submit" value="X"/>
+    </form>
+   </td> 
+  </tr> 
+ <% end %>
+</table> 
+<a href="<%= "/" %>">Home</a>
+<a href="<%= "/entries/new" %>">New</a>

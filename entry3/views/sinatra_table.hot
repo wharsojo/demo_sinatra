@@ -1,0 +1,60 @@
+>>_h2
+%h2{style="margin: 4px 0 2px;"}$$ $0
+
+>>_list_r
+&tbl=*#
+-link$#
+-table_h$$ $*
+ -each_r $*
+-link$#
+
+>>_link
+-a2 Home;"/"
+-a2 New;"/*#/new"
+
+>>_table_h
+-table$$
+ -tr_th No;$*;action
+
+>>_table
+&tbl=*#
+%table$#{border=1}
+
+>>_each_r
+-each2 @&tbl!;r,i
+ -tr_td= i+1
+  -td_r= $*
+  -td
+   -form_delete#entry "/entries/#{r.id}"
+    -a2 Edit;"/&tbl!/"+r.id.to_s
+    -button X
+
+>>_tr_th
+%tr
+ -th $*
+
+>>_tr_td
+%tr
+ -td$$ $*
+
+>>_th
+%th$$ ~:capitalize$0
+
+>>_td
+%td$$ $0
+
+>>_td_r
+%td$$ r.$0
+
+>>_form_delete
+&tbl= *#
+<form *all*method="post" action="<%= $0 %>" style="margin:0px;">
+ %input{type="hidden" name="_method" value="delete"}/
+-form_end
+
+>>_form_end
+<</
+</form>
+
+>>_button
+<input type="submit" value="$0"/>
