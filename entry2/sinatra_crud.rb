@@ -14,14 +14,14 @@ def sinatra_crud rec
 idxget = eval(<<END )
   proc do
     @#{recs} = #{model}.all 
-    erb :entries_index
+    erb :#{recs}_index
   end
 END
 
 newget = eval(<<END )
   proc do
     @#{rec} = #{model}.new
-    erb :entries_new
+    erb :#{recs}_new
   end
 END
 
@@ -36,7 +36,7 @@ edtget = eval(<<END )
   proc do
     id = params[:id]
     @#{rec} = #{model}[id]
-    erb :entries_edit
+    erb :#{recs}_edit
   end
 END
 
