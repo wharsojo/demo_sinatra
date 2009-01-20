@@ -1,0 +1,3 @@
+= Change Log
+
+fix (require 'sinatra.0.9.x') for Sinatra 0.9.x

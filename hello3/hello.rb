@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require '../sinatra.0.9.x'
 require 'sequel'
 
 DB = Sequel.sqlite('blog.db')
