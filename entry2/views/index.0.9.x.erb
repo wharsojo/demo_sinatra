@@ -1,0 +1,62 @@
+<br/>
+<div id="info" class="demo">
+  <ul>
+    <li>
+      <a href="#">Sinatra::Application.routes</a>
+      <ul>
+        <% Sinatra::Application.routes.each do |k,v| %>
+         <li>
+          <a href="#"><%= k %></a>
+          <ul>
+            <% v.each do |x| %>
+              <li>
+                <a href="#"><%= x[0].to_s.gsub('(?-mix:','(') %></a>
+              </li> 
+            <% end %>
+          </ul> 
+         </li> 
+        <% end %>
+      </ul> 
+    </li> 
+    <li>
+      <a href="#">self.request.env</a>
+      <ul>
+        <% self.request.env.sort.each do |k,v| %>
+          <li>
+            <a href="#"><%= "#{k} => #{v}" %></a>
+          </li> 
+        <% end %>
+      </ul> 
+    </li> 
+    <li>
+      <a href="#">self.public_methods(nil)</a>
+      <ul>
+        <% (self.public_methods - (self.class.public_methods)).sort.each do |z| %>
+          <li class="leaf">
+            <a href="#"><%= z %></a>
+          </li> 
+        <% end %>
+      </ul> 
+    </li> 
+    <li>
+      <a href="#">self.request.public_methods(nil)</a>
+      <ul>
+        <% (self.request.public_methods - Object.public_methods).sort.each do |z| %>
+          <li class="leaf">
+            <a href="#"><%= z %></a>
+          </li> 
+        <% end %>
+      </ul> 
+    </li> 
+    <li>
+      <a href="#">self.response.public_methods(nil)</a>
+      <ul>
+        <% (self.response.public_methods - Object.public_methods).sort.each do |z| %>
+          <li>
+            <a href="#"><%= z %></a>
+          </li> 
+        <% end %>
+      </ul> 
+    </li> 
+  </ul> 
+</div> 

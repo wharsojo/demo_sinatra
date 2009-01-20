@@ -1,0 +1,38 @@
+%br/
+#info.demo
+  %ul
+    %li
+      -a Sinatra::Application.routes
+      %ul
+        -each Sinatra::Application.routes;k,v
+         %li
+          -a= k 
+          %ul
+            -each v;x
+              %li
+                -a= x[0].to_s.gsub('(?-mix:','(')
+    %li
+      -a self.request.env
+      %ul
+        -eachs self.request.env;k,v
+          %li
+            -a= "#{k} => #{v}"
+    %li
+      -a self.public_methods(nil)
+      %ul
+        -eachs (self.public_methods - (self.class.public_methods));z
+          %li.leaf
+            -a= z
+    %li
+      -a self.request.public_methods(nil)
+      %ul
+        -eachs (self.request.public_methods - Object.public_methods);z
+          %li.leaf
+            -a= z
+    %li
+      -a self.response.public_methods(nil)
+      %ul
+        -eachs (self.response.public_methods - Object.public_methods);z
+          %li
+            -a= z
+
