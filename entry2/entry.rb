@@ -12,7 +12,8 @@ end
 sinatra_crud 'entry'
 
 get '/info' do
-  erb :info,:layout => :layout_info
+  out = Sinatra::VERSION > '0.9' ? :"index.0.9.x" : :"index.0.3.x"
+  erb out,:layout => :"layout_info"
 end
 
 get '/' do
